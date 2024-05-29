@@ -33,7 +33,7 @@ const Login = () => {
       }
       if (response.ok) {
         const stuffs = await response.json();
-        console.log(stuffs);
+        
         alert(stuffs.msg);
         localStorage.setItem("token",stuffs.token)
         navigate("/");

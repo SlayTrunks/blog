@@ -9,6 +9,7 @@ import Signup from './Signup.jsx'
 import Navbar from './Navbar.jsx'
 import {Link , NavLink} from "react-router-dom"
 import Profile from "./Profile.jsx"
+import Create from './Create.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Route path="/login" element={<Login/>}  />
   <Route path="/signup" element={<Signup/>} />
   <Route path="/profile" element={<Profile/>} />
+  <Route path="/create" element={<Create/>} />
  </Routes>
  </BrowserRouter>
   </div>

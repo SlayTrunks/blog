@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from "./Navbar"
+import { Link } from 'react-router-dom';
 const Profile = () => {
   const [user,setUser] = useState()
   const fetchData = async () => {
@@ -39,6 +40,8 @@ const Profile = () => {
     <h2>username:{user.username}</h2>
     <h2>password:{user.password}</h2>
     <h2>userid:{user._id}</h2>
+
+    <Link to={'/create'}>Create Blog</Link>
   </div>
     )
 }

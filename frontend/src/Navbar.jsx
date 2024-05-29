@@ -12,7 +12,7 @@ const Navbar = () => {
     navigate("/")
   }
   return (
-    <header className='navbar'>
+    <header className='navbar' style={{ paddingBottom:"20px" ,borderBottom:"3px solid skyblue"}}>
     <NavLink className='logo' to={"/"}>logo</NavLink>
     <div className='sign'>
       {authCheck ? 
