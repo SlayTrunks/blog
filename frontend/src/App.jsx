@@ -4,15 +4,17 @@ import "./App.css";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 
+
 function App() {
   const [data,setData] = useState()
   const fetchData = () => {
     useEffect(() => {
       fetch("http://localhost:3000/getblog")
         .then((response) => response.json())
-        .then((data) => setData(data));
-        
+        .then((data) => setData(data))
+       
     }, []);
+   console.log(data)
   };
   fetchData()
 
@@ -25,8 +27,8 @@ function App() {
       <div className="container">
       {
         data && data.map((item)=>{
-          
-         return  <div className="entry" key={item._id}>
+         const {_id,image,header,description} = item
+         return  <Link to={`details/${item._id}`} className="entry" key={item._id}>
          <img
            className="img"
            src={item.image}
@@ -36,10 +38,10 @@ function App() {
            {/* <h4 className="author">@diwas</h4> */}
            <h2>{item.header}</h2>
            <p>
-            {item.description}
+            {description.slice(0,300)}
            </p>
          </div>
-       </div>
+       </Link>
         })
       }
       </div>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+  const navigate = useNavigate()
   const [data, setData] = useState({
     header: "",
    
@@ -29,7 +31,7 @@ const Create = () => {
         const stuffs = await response.json();
         
         alert(stuffs.msg);
-        
+        navigate("/")
         
       }
     } catch (error) {
