@@ -1,11 +1,12 @@
 const Blog = require("../models/blog-model");
 const User = require("../models/module");
 const jwt = require("jsonwebtoken");
+require("dotenv").config
 exports.postBlog = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
 
-    var decoded = await jwt.verify(token, "12345");
+    var decoded = await jwt.verify(token, process.env.JWT_PASS);
 
     const user = await User.findOne({ username: decoded.username });
 
@@ -36,7 +37,7 @@ exports.detail = async (req, res) => {
   if (auth) {
     try {
       const token = auth.split(" ")[1];
-      var decoded = await jwt.verify(token, "12345");
+      var decoded = await jwt.verify(token, process.env.JWT_PASS);
       const user = await User.findOne({ username: decoded.username });
       const loggedinUser = user._id
       

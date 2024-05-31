@@ -1,10 +1,13 @@
 const express = require('express')
 const mongoose = require("mongoose")
+require("dotenv").config()
+
 
 const connectDb = async ()=>{
     try {
-        await  mongoose.connect("mongodb+srv://insane:123@hkirat.lvgqigl.mongodb.net/")
-        await console.log("connected to db")
+       
+        await  mongoose.connect(process.env.MONGO_URI)
+         console.log("connected to db")
         
        
     } catch (error) {
