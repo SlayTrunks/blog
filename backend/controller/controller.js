@@ -3,13 +3,14 @@ const app = express();
 const User = require("../models/module");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt")
+const Blog = require("../models/blog-model")
 require("dotenv").config
 
 exports.signup = async (req, res) => {
  
   try {
     const hash = await bcrypt.hash(req.body.password,10)
-    console.log(hash)
+    
    
     
     const create = await User.create({username:req.body.username,password:hash});
@@ -56,8 +57,18 @@ try {
   const token = req.headers.authorization.split(" ")[1]
   var decoded = jwt.verify(token,process.env.JWT_PASS)
   const user = await User.findOne({username:decoded.username})
+  const blog = await Blog.find()
+  const mapBlog = blog.map(item=>{
+    return item.author
+  })
+  
+  const userBlog = blog.filter(item=>{
+    return item.author.toString() == user._id.toString()
+  })
+  
   res.status(200).json({
-    msg:user
+    msg:user,
+    myBlogs:userBlog
   })
 } catch (error) {
   res.status(400).json({

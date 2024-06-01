@@ -29,9 +29,21 @@ exports.postBlog = async (req, res) => {
   }
 };
 exports.getBlog = async (req, res) => {
-  const blog = await Blog.find();
-  res.send(blog);
+  try {
+    const blogs = await Blog.find();
+    const users = await User.find();
+  
+    const userIds = users.map(user => user._id.toString()); 
+  
+    const filteredBlogs = blogs.filter(blog => userIds.includes(blog.author.toString()));
+  
+    res.status(200).json(filteredBlogs);
+  } catch (error) {
+    
+    res.status(500).send("Internal Server Error");
+  }
 };
+
 exports.detail = async (req, res) => {
   const auth = req.headers.authorization;
   if (auth) {

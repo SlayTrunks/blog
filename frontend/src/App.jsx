@@ -14,7 +14,7 @@ function App() {
         .then((data) => setData(data))
        
     }, []);
-   console.log(data)
+  
   };
   fetchData()
 
@@ -25,10 +25,11 @@ function App() {
     <main>
       <Navbar/>
       <div className="container">
+        
       {
         data && data.map((item)=>{
          const {_id,image,header,description} = item
-         return  <Link to={`details/${item._id}`} className="entry" key={item._id}>
+         return  <Link to={`/details/${item._id}`} className="entry" key={item._id}>
          <img
            className="img"
            src={item.image}

@@ -23,7 +23,7 @@ const Edit = () => {
         const response = await fetch(
             `http://localhost:3000/detail/${params.id}`);
           const smth = await response.json();
-          console.log(smth);
+          
          setData({
           header:smth.header,
           image:smth.image,

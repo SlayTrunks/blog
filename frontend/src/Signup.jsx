@@ -33,7 +33,7 @@ const Signup = () => {
       }
 
       const responseData = await response.json();
-      console.log(responseData);
+     
       alert(`Success: ${responseData.msg}`);
       navigate("/login");
     } catch (error) {

@@ -36,7 +36,7 @@ const Create = () => {
       }
     } catch (error) {
       alert("Error while fetching try again");
-      console.log(error);
+    
     }
   };
   const handleChange = (e)=>{
